@@ -30,6 +30,7 @@ spring:
             client-secret: ${GOOGLE_CLIENT_SECRET:google-client-secret}
             scope: openid, https://www.googleapis.com/auth/userinfo.profile, https://www.googleapis.com/auth/userinfo.email
             client-name: Sign in with Google
+            redirect-uri: "http://localhost:9000/login/oauth2/code/google"
           github-idp:
             provider: github
             client-id: ${GITHUB_CLIENT_ID:github-client-id}
@@ -38,7 +39,10 @@ spring:
             client-name: Sign in with GitHub
         provider:
           google:
-            user-name-attribute: email
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            user-name-attribute: sub
           github:
             user-name-attribute: login
 
